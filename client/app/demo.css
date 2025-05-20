@@ -1,0 +1,39 @@
+.demo-container {
+  @apply relative w-full max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8;
+}
+
+.demo-step {
+  @apply flex items-center space-x-4 mb-6;
+}
+
+.demo-icon {
+  @apply w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600;
+}
+
+.demo-content {
+  @apply flex-1;
+}
+
+.demo-title {
+  @apply text-lg font-semibold text-gray-900;
+}
+
+.demo-description {
+  @apply text-sm text-gray-600;
+}
+
+.demo-button {
+  @apply mt-8 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors;
+}
+
+.demo-pdf {
+  @apply w-16 h-20 bg-gray-100 rounded border border-gray-300 flex items-center justify-center;
+}
+
+.demo-cards {
+  @apply flex space-x-2;
+}
+
+.demo-card {
+  @apply w-12 h-16 bg-white rounded border border-gray-300 shadow-sm;
+} 

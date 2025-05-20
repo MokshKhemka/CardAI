@@ -23,7 +23,7 @@ export function Hero() {
           Upload any textbook or PDF and our AI will instantly create customized flashcards to accelerate your learning
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
           <Button className="bg-chalkboard-green hover:bg-chalkboard-green/90 text-white border-0 text-lg px-8 py-6 h-auto">
             Get Started Free
             <ArrowRight className="ml-2 h-5 w-5" />
