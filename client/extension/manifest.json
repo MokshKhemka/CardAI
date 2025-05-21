@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "CardAI Flashcard Generator",
+  "version": "1.0",
+  "description": "Generate flashcards from PDFs using CardAI.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "../public/placeholder-logo.png",
+      "48": "../public/placeholder-logo.png",
+      "128": "../public/placeholder-logo.png"
+    }
+  },
+  "permissions": ["storage"],
+  "host_permissions": [
+    "http://localhost:5000/*"
+  ]
+} 
