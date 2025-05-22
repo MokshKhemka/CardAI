@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { BookOpen, Github, Instagram, Linkedin, Twitter } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 export function Footer() {
   return (
@@ -42,6 +43,20 @@ export function Footer() {
               <Linkedin className="h-5 w-5" />
             </Link>
           </div>
+        </div>
+
+        <div className="mt-6">
+          <h4 className="text-lg font-medium text-pencil-lead mb-2">Subscribe to our newsletter</h4>
+          <form className="flex space-x-2">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="border border-gray-300 rounded-full px-3 py-1 text-sm focus:outline-none focus:border-apple-red"
+            />
+            <Button className="bg-apple-red hover:bg-apple-red/90 text-white border-0">
+              Subscribe
+            </Button>
+          </form>
         </div>
       </div>
     </footer>

@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { BookOpen, Menu, X } from "lucide-react"
+import { BookOpen, Menu, X, Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
@@ -30,6 +30,17 @@ export function Navbar() {
             <Link href="#how-it-works" className="text-pencil-lead hover:text-apple-red transition-colors">
               How It Works
             </Link>
+            <Link href="#about" className="text-pencil-lead hover:text-apple-red transition-colors">
+              About
+            </Link>
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search..."
+                className="border border-gray-300 rounded-full px-3 py-1 text-sm focus:outline-none focus:border-apple-red"
+              />
+              <Search className="absolute right-2 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500" />
+            </div>
             <Button className="bg-chalkboard-green hover:bg-chalkboard-green/90 text-white border-0">
               Get Started
             </Button>
@@ -65,6 +76,13 @@ export function Navbar() {
             onClick={() => setIsMenuOpen(false)}
           >
             How It Works
+          </Link>
+          <Link
+            href="#about"
+            className="text-xl text-pencil-lead hover:text-apple-red transition-colors"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            About
           </Link>
           <Button
             className="bg-chalkboard-green hover:bg-chalkboard-green/90 text-white border-0 w-full"
