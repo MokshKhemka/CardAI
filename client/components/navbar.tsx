@@ -6,6 +6,9 @@ import { BookOpen, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
+// Navbar component for site navigation
+// Add a search bar to the navbar
+
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -41,6 +44,9 @@ export function Navbar() {
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
           </div>
+
+          {/* Add a search bar */}
+          <input type="text" placeholder="Search..." className="p-2 rounded" />
         </div>
       </div>
 

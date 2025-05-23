@@ -73,6 +73,7 @@
   body {
     @apply bg-background text-foreground;
     transition: background-color 0.3s;
+    font-family: 'Arial', sans-serif;
   }
 
   body.dark {
@@ -100,4 +101,9 @@
 
 .font-serif {
   font-family: var(--font-serif);
+}
+
+/* Add a gradient background to the header */
+header {
+  background: linear-gradient(to right, #ff7e5f, #feb47b);
 }

@@ -1,5 +1,10 @@
 import type { Config } from "tailwindcss"
 
+// Tailwind CSS configuration file
+// Enables dark mode using class strategy
+// Specifies content paths for purging unused styles
+// Extends theme with custom colors and animations
+
 const config = {
   darkMode: 'class',
   content: [

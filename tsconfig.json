@@ -1,3 +1,6 @@
+// TypeScript configuration file
+// Specifies the root files and compiler options required to compile the project
+// Adjust settings as needed for your project
 {
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext"],
