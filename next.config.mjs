@@ -8,7 +8,12 @@ const nextConfig = {
   },
   images: {
     unoptimized: true,
+    domains: ['example.com'],
+    deviceSizes: [640, 750, 1080, 1200, 1920],
+    imageSizes: [16, 32, 48, 64, 96],
   },
+  optimizeFonts: true,
+  compress: true,
 }
 
 // Next.js configuration file
