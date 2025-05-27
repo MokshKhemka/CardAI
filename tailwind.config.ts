@@ -1,93 +1,42 @@
-import type { Config } from "tailwindcss"
+import { Config } from 'tailwindcss';
 
 // Tailwind CSS configuration file
 // Enables dark mode using class strategy
 // Specifies content paths for purging unused styles
 // Extends theme with custom colors and animations
 
-const config = {
+const config: Config = {
   darkMode: 'class',
   content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
-    "*.{js,ts,jsx,tsx,mdx}",
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+    './app/**/*.{js,ts,jsx,tsx}',
   ],
-  prefix: "",
   theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
     extend: {
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+        primary: '#1D4ED8',
+        secondary: '#9333EA',
+        accent: '#F59E0B',
+        neutral: '#374151',
+        base: '#F3F4F6',
+        info: '#3B82F6',
+        success: '#10B981',
+        warning: '#F59E0B',
+        error: '#EF4444',
+        school: {
+          light: '#F3F4F6',
+          DEFAULT: '#1D4ED8',
+          dark: '#1E3A8A',
         },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
-        // School-themed colors
-        "apple-red": "#D62828",
-        "chalkboard-green": "#2A9D8F",
-        "pencil-lead": "#333333",
-        "pencil-yellow": "#F9C74F",
-        "notebook-line": "#CCCCCC",
-        "notebook-paper": "#FFFFFF",
-      },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
-      },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
+        extra: '#FF5733',
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+        'spin-slow': 'spin 3s linear infinite',
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
-} satisfies Config
+  plugins: [],
+};
 
-export default config
+export default config;
