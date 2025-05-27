@@ -5,9 +5,16 @@ import Link from "next/link"
 import { BookOpen, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { motion } from "framer-motion"
 
 // Navbar component for site navigation
 // Add a search bar to the navbar
+
+// Add animation to the menu toggle
+const menuAnimation = {
+  hidden: { opacity: 0, x: 100 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
+};
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -27,13 +34,13 @@ export function Navbar() {
 
           {/* Desktop menu */}
           <div className="hidden md:flex items-center space-x-6">
-            <Link href="#features" className="text-pencil-lead hover:text-apple-red transition-colors">
+            <Link href="#features" className="text-pencil-lead hover:text-apple-red transition-colors duration-300">
               Features
             </Link>
-            <Link href="#how-it-works" className="text-pencil-lead hover:text-apple-red transition-colors">
+            <Link href="#how-it-works" className="text-pencil-lead hover:text-apple-red transition-colors duration-300">
               How It Works
             </Link>
-            <Button className="bg-chalkboard-green hover:bg-chalkboard-green/90 text-white border-0">
+            <Button className="bg-chalkboard-green hover:bg-chalkboard-green/90 text-white border-0 transition-transform duration-300 transform hover:scale-105">
               Get Started
             </Button>
           </div>
@@ -51,7 +58,10 @@ export function Navbar() {
       </div>
 
       {/* Mobile menu */}
-      <div
+      <motion.div
+        initial="hidden"
+        animate={isMenuOpen ? "visible" : "hidden"}
+        variants={menuAnimation}
         className={cn(
           "md:hidden fixed inset-0 z-40 bg-white transition-all duration-300 ease-in-out",
           isMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full pointer-events-none",
@@ -79,7 +89,7 @@ export function Navbar() {
             Get Started
           </Button>
         </div>
-      </div>
+      </motion.div>
     </nav>
   )
 }

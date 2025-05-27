@@ -40,15 +40,28 @@ app.post('/api/upload', upload.single('pdf'), async (req, res) => {
       return res.status(400).json({ error: 'No PDF file uploaded' });
     }
 
+    // Validate file size (e.g., max 5MB)
+    if (req.file.size > 5 * 1024 * 1024) {
+      return res.status(400).json({ error: 'File size exceeds 5MB limit' });
+    }
+
     const data = await pdfParse(req.file.buffer);
     const text = data.text;
     
-    // Simple text splitting into flashcards (this is a basic implementation)
-    const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
-    const flashcards = sentences.map(sentence => ({
-      front: sentence.trim(),
-      back: 'Answer will be generated here' // This is a placeholder
-    }));
+    // Enhanced text processing for flashcard generation
+    // Use regex to identify key points or questions
+
+    // Improved flashcard generation logic
+    const generateFlashcards = (text) => {
+      const keyPoints = text.match(/\b(?:What|How|Why|When|Where|Who)\b[^.!?]*[.!?]/gi) || [];
+      return keyPoints.map(point => ({
+        front: point.trim(),
+        back: 'Answer will be generated here' // Placeholder for now
+      }));
+    };
+
+    // Use the improved flashcard generation logic
+    const flashcards = generateFlashcards(text);
 
     res.json({ flashcards });
   } catch (error) {

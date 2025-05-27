@@ -74,6 +74,8 @@
     @apply bg-background text-foreground;
     transition: background-color 0.3s;
     font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
   }
 
   body.dark {
@@ -115,7 +117,16 @@ button, input {
 
 /* Improve layout with consistent spacing */
 .container {
-  padding: 1rem;
-  margin: 0 auto;
   max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #222;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-bottom: 1rem;
 }
