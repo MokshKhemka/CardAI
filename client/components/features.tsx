@@ -3,13 +3,13 @@ import { BookOpen, Clock, FileText, Layers, Sparkles, Zap } from "lucide-react"
 
 export function Features() {
   return (
-    <section className="py-16 border-b border-notebook-line bg-white" id="features">
+    <section className="py-16 border-b border-notebook-line bg-white blocky-section blocky-card">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <div className="inline-block bg-gray-100 px-4 py-1.5 rounded-full text-sm font-medium text-pencil-lead mb-4">
             FEATURES
           </div>
-          <h2 className="text-3xl font-serif font-bold mb-4 text-pencil-lead">Transform How You Learn</h2>
+          <h2 className="heading-handwritten mb-8 text-center text-pencil-lead">Transform How You Learn</h2>
           <p className="text-lg text-pencil-lead/80 max-w-2xl mx-auto">
             Our AI-powered platform makes studying efficient and effective with these powerful features
           </p>
@@ -69,16 +69,9 @@ function FeatureCard({
   description: string
   color: "apple" | "chalk" | "pencil"
 }) {
-  const bgColor =
-    color === "apple"
-      ? "bg-apple-red text-white"
-      : color === "chalk"
-        ? "bg-chalkboard-green text-white"
-        : "bg-pencil-yellow text-pencil-lead"
-
   return (
-    <div className="p-6 rounded-md bg-white border border-notebook-line shadow-sm hover:shadow-md transition-shadow">
-      <div className={`${bgColor} p-3 rounded-full inline-block mb-4`}>{icon}</div>
+    <div className="p-6 bg-white border blocky-card">
+      <div className={`${color} p-3 rounded-full inline-block mb-4`}>{icon}</div>
       <h3 className="text-xl font-serif font-bold mb-2 text-pencil-lead">{title}</h3>
       <p className="text-pencil-lead/80">{description}</p>
     </div>

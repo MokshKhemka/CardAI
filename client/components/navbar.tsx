@@ -16,20 +16,18 @@ const menuAnimation = {
   visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
 };
 
+// Navbar component for site navigation
+// Add a search bar to the navbar
+
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <nav className="sticky top-0 z-50 bg-white border-b border-notebook-line shadow-sm">
+    <nav className="sticky top-0 z-50 bg-white border-b border-notebook-line shadow-sm blocky-section blocky-card">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <div className="flex items-center">
-            <div className="relative mr-2">
-              <div className="bg-apple-red p-2 rounded-full">
-                <BookOpen className="h-6 w-6 text-white" />
-              </div>
-            </div>
-            <span className="text-xl font-handwritten font-bold text-pencil-lead">CardAI</span>
+          <div>
+            <span className="heading-handwritten">CardAI</span>
           </div>
 
           {/* Desktop menu */}
@@ -40,7 +38,7 @@ export function Navbar() {
             <Link href="#how-it-works" className="text-pencil-lead hover:text-apple-red transition-colors duration-300">
               How It Works
             </Link>
-            <Button className="bg-chalkboard-green hover:bg-chalkboard-green/90 text-white border-0 transition-transform duration-300 transform hover:scale-105">
+            <Button className="bg-chalkboard-green hover:bg-chalkboard-green/90 text-white border-0 blocky-card">
               Get Started
             </Button>
           </div>
@@ -48,12 +46,9 @@ export function Navbar() {
           {/* Mobile menu button */}
           <div className="md:hidden">
             <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isMenuOpen ? 'Close' : 'Menu'}
             </Button>
           </div>
-
-          {/* Add a search bar */}
-          <input type="text" placeholder="Search..." className="p-2 rounded" />
         </div>
       </div>
 

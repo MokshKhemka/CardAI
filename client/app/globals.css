@@ -4,65 +4,27 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    --background: #f5f5f5;
+    --foreground: #222222;
+    --card: #ffffff;
+    --card-foreground: #222222;
+    --primary: #222222;
+    --primary-foreground: #ffffff;
+    --border: #cccccc;
+    --input: #cccccc;
+    --radius: 0;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --background: #222222;
+    --foreground: #f5f5f5;
+    --card: #2d2d2d;
+    --card-foreground: #f5f5f5;
+    --primary: #f5f5f5;
+    --primary-foreground: #222222;
+    --border: #444444;
+    --input: #444444;
+    --radius: 0;
   }
 }
 
@@ -72,14 +34,17 @@
   }
   body {
     @apply bg-background text-foreground;
+    background: #f5f5f5;
+    color: #222222;
   }
 }
 
 /* Notebook paper background */
 .bg-notebook-paper {
-  background-color: #ffffff;
-  background-image: linear-gradient(#e7e7e7 1px, transparent 1px);
-  background-size: 100% 24px;
+  background-color: #fdf6e3;
+  background-image: url('/paper-texture.png'), linear-gradient(#e7e7e7 1px, transparent 1px);
+  background-size: 400px 400px, 100% 24px;
+  background-blend-mode: multiply;
 }
 
 /* Index card background */
@@ -94,4 +59,74 @@
 
 .font-serif {
   font-family: var(--font-serif);
+}
+
+/* Softer corners and gentle shadow */
+.rounded-soft {
+  border-radius: 14px;
+}
+.shadow-gentle {
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.07);
+}
+
+/* Handwritten headings */
+.heading-handwritten {
+  font-family: var(--font-handwritten);
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: #222222;
+}
+
+/* Doodle border utility for a less professional look */
+.doodle-border {
+  border: 2.5px dashed #bfae8e;
+  border-radius: 18px;
+  box-shadow: 2px 4px 0 0 #f3eac2, 0 2px 8px 0 rgba(0,0,0,0.07);
+}
+
+/* Imperfect card background */
+.card-homemade {
+  background: repeating-linear-gradient(135deg, #fffbe7, #fffbe7 18px, #f9f6e3 22px, #fffbe7 30px);
+  border: 2.5px dashed #e0cfa9;
+  border-radius: 18px;
+  box-shadow: 2px 4px 0 0 #f3eac2, 0 2px 8px 0 rgba(0,0,0,0.07);
+  padding: 1.5rem;
+}
+
+/* Playful button hover effect */
+.button-playful {
+  transition: transform 0.1s cubic-bezier(.68,-0.55,.27,1.55), box-shadow 0.1s;
+  box-shadow: 2px 4px 0 0 #f3eac2;
+}
+.button-playful:hover {
+  transform: rotate(-2deg) scale(1.04);
+  box-shadow: 4px 8px 0 0 #f3eac2;
+}
+
+/* Blocky, old-fashioned card style with bold retro terminal colors */
+.blocky-card {
+  background: #ffffff;
+  border: 2px solid #cccccc;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 1.5rem;
+  color: #222222;
+}
+
+.blocky-section {
+  background: #f5f5f5;
+  border: 2px solid #cccccc;
+  border-radius: 0;
+  box-shadow: none;
+  color: #222222;
+}
+
+.bg-chalkboard-green {
+  background-color: #cccccc !important;
+  color: #222222 !important;
+}
+
+.text-pencil-lead {
+  color: #222222 !important;
 }

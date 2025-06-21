@@ -5,7 +5,11 @@ import { Config } from 'tailwindcss';
 // Specifies content paths for purging unused styles
 // Extends theme with custom colors and animations
 
+<<<<<<< HEAD
 const config: Config = {
+=======
+const config = {
+>>>>>>> b1535f0 (Enhance components and configuration files with comments and minor features)
   darkMode: 'class',
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',

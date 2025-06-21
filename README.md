@@ -1,4 +1,4 @@
-# CardAI 📚
+# CardAI 
 
 Transform your PDFs and textbooks into interactive flashcards using AI. CardAI helps you study smarter by converting long documents into easily digestible flashcards.
 
@@ -37,7 +37,7 @@ npm install
 ```bash
 npm run dev
 ```
-
+or check out the website (will include in future, after it is shipped)
 ## Tech Stack
 
 * **Frontend**: React.js, Next.js, Tailwind CSS
@@ -82,20 +82,6 @@ Activity
 **0** forks
 
 Report repository
-
-## Releases
-
-No releases published
-
-## Packages0
-
-No packages published
-
-## Languages
-
-* TypeScript 96.5%
-* CSS 2.4%
-* Other 1.1%
 
 ## Footer
 
