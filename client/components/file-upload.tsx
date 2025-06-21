@@ -8,17 +8,24 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { cn } from "@/lib/utils"
+import * as pdfjsLib from "pdfjs-dist"
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
 
 export function FileUpload() {
   const [file, setFile] = useState<File | null>(null)
   const [uploading, setUploading] = useState(false)
   const [progress, setProgress] = useState(0)
   const [dragActive, setDragActive] = useState(false)
+  const [extractedText, setExtractedText] = useState("")
+  const [flashcards, setFlashcards] = useState<{ question: string; answer: string }[]>([])
   const inputRef = useRef<HTMLInputElement>(null)
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setFile(e.target.files[0])
+      setExtractedText("")
+      setFlashcards([])
     }
   }
 
@@ -38,26 +45,54 @@ export function FileUpload() {
     setDragActive(false)
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       setFile(e.dataTransfer.files[0])
+      setExtractedText("")
+      setFlashcards([])
     }
   }
 
-  const handleUpload = () => {
-    if (!file) return
+  const handleTextExtraction = async () => {
+    if (!file) return;
 
-    setUploading(true)
+    setUploading(true);
+    setProgress(0);
+    setExtractedText("");
+    setFlashcards([]);
 
-    // Simulate upload progress
-    let currentProgress = 0
-    const interval = setInterval(() => {
-      currentProgress += 5
-      setProgress(currentProgress)
+    const reader = new FileReader();
+    reader.onload = async (event) => {
+      if (event.target?.result) {
+        const typedArray = new Uint8Array(event.target.result as ArrayBuffer);
+        const loadingTask = pdfjsLib.getDocument(typedArray);
+        
+        const pdf = await loadingTask.promise;
+        let fullText = "";
+        
+        for (let i = 1; i <= pdf.numPages; i++) {
+          const page = await pdf.getPage(i);
+          const textContent = await page.getTextContent();
+          fullText += textContent.items.map((item: any) => item.str).join(" ") + "\n";
+          setProgress((i / pdf.numPages) * 100);
+        }
 
-      if (currentProgress >= 100) {
-        clearInterval(interval)
-        setUploading(false)
-        // In a real app, this is where you'd call the API to process the PDF
+        setExtractedText(fullText);
+        generateFlashcards(fullText);
+        setUploading(false);
       }
-    }, 150)
+    };
+    reader.readAsArrayBuffer(file);
+  };
+  
+  const generateFlashcards = (text: string) => {
+    const lines = text.split('\n').filter(line => line.trim() !== "");
+    const cards: { question: string; answer: string }[] = [];
+    for (let i = 0; i < lines.length; i += 2) {
+      if (lines[i] && lines[i+1]) {
+        cards.push({ question: lines[i], answer: lines[i+1] });
+      } else if (lines[i]) {
+        cards.push({ question: lines[i], answer: "No answer found" });
+      }
+    }
+    setFlashcards(cards);
   }
 
   const openFileSelector = () => {
@@ -116,10 +151,10 @@ export function FileUpload() {
 
           {file && !uploading && (
             <Button
-              onClick={handleUpload}
+              onClick={handleTextExtraction}
               className="w-full sm:w-auto bg-chalkboard-green hover:bg-chalkboard-green/90 text-white border-0"
             >
-              Generate Flashcards
+              Extract Text from PDF
             </Button>
           )}
 
@@ -130,8 +165,31 @@ export function FileUpload() {
               </div>
               <p className="text-sm text-center text-pencil-lead/70 flex items-center justify-center gap-2">
                 <Sparkles className="h-4 w-4 text-pencil-yellow" />
-                <span>AI is processing your PDF...</span>
+                <span>Extracting text from your PDF...</span>
               </p>
+            </div>
+          )}
+
+          {extractedText && !uploading && (
+            <div className="mt-6 p-4 border rounded-md bg-gray-50 w-full">
+              <h3 className="text-lg font-semibold mb-2">Extracted Text</h3>
+              <textarea
+                className="w-full h-40 p-2 border rounded"
+                readOnly
+                value={extractedText}
+              />
+            </div>
+          )}
+          
+          {flashcards.length > 0 && !uploading && (
+             <div className="mt-6 w-full">
+                <h3 className="text-lg font-semibold mb-2">Generated Flashcards</h3>
+                {flashcards.map((card, index) => (
+                    <div key={index} className="p-4 border rounded-md bg-yellow-100 mb-2">
+                        <p><strong>Q:</strong> {card.question}</p>
+                        <p><strong>A:</strong> {card.answer}</p>
+                    </div>
+                ))}
             </div>
           )}
         </div>
