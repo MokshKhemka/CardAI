@@ -1,7 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Lora, Kalam } from "next/font/google"
-import "./globals.css"
+// import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 
 const lora = Lora({ subsets: ["latin"], variable: "--font-serif" })
