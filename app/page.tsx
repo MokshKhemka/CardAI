@@ -1,5 +1,4 @@
 import { FileUpload } from "@/components/file-upload"
-import { FlashcardDisplay } from "@/components/flashcard-display"
 import { Hero } from "@/components/hero"
 import { Features } from "@/components/features"
 import { HowItWorks } from "@/components/how-it-works"
@@ -13,7 +12,6 @@ export default function Home() {
       <Hero />
       <div className="container mx-auto px-4 py-12 flex-1 max-w-5xl">
         <FileUpload />
-        <FlashcardDisplay />
       </div>
       <Features />
       <HowItWorks />
