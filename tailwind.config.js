@@ -1,15 +1,5 @@
-import { Config } from 'tailwindcss';
-
-// Tailwind CSS configuration file
-// Enables dark mode using class strategy
-// Specifies content paths for purging unused styles
-// Extends theme with custom colors and animations
-
-<<<<<<< HEAD
-const config: Config = {
-=======
-const config = {
->>>>>>> b1535f0 (Enhance components and configuration files with comments and minor features)
+/** @type {import('tailwindcss').Config} */
+module.exports = {
   darkMode: 'class',
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
@@ -42,5 +32,3 @@ const config = {
   },
   plugins: [],
 };
-
-export default config;
