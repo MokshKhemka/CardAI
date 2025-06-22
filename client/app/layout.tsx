@@ -1,11 +1,14 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Lora, Kalam } from "next/font/google"
+import { Inter as FontSans } from "next/font/google"
 import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
 
-const lora = Lora({ subsets: ["latin"], variable: "--font-serif" })
-const kalam = Kalam({ weight: ["400", "700"], subsets: ["latin"], variable: "--font-handwritten" })
+import { cn } from "@/lib/utils"
+
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+})
 
 export const metadata: Metadata = {
   title: "CardAI - Transform PDFs into Flashcards",
@@ -27,10 +30,13 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className={`${lora.variable} ${kalam.variable} font-serif antialiased bg-notebook-paper`}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
-          <div className="relative z-0">{children}</div>
-        </ThemeProvider>
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable
+        )}
+      >
+        {children}
       </body>
     </html>
   )

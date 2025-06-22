@@ -19,8 +19,9 @@ app.use((req, res, next) => {
   next();
 });
 
+// Add request logging middleware
 app.use((req, res, next) => {
-  console.log(`${req.method} ${req.url}`);
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
   next();
 });
 
@@ -68,6 +69,11 @@ app.post('/api/upload', upload.single('pdf'), async (req, res) => {
 
 app.get('/api/status', (req, res) => {
   res.json({ status: 'Server is running smoothly' });
+});
+
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok', uptime: process.uptime() });
 });
 
 app.listen(port, () => {
