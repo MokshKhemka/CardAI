@@ -6,11 +6,14 @@ import { useState, useRef, useEffect } from "react"
 import { Upload, FileText, Sparkles } from "lucide-react"
 import { Progress } from "@/components/ui/progress"
 import { cn } from "@/lib/utils"
+import { Flashcard } from "./flashcard"
 
 export function FileUpload() {
   const [inputText, setInputText] = useState("");
   const [flashcards, setFlashcards] = useState<{ question: string; answer: string }[]>([]);
   const [generatingCards, setGeneratingCards] = useState(false);
+  const [currentCard, setCurrentCard] = useState(0);
+  const [showAnswer, setShowAnswer] = useState(false);
 
   const exampleText = `What is the capital of France?
 Paris is the capital and largest city of France.
@@ -106,14 +109,38 @@ The sun is primarily composed of hydrogen gas.`;
       {flashcards.length > 0 && (
         <div className="blocky-content w-full mt-8">
           <h3 className="text-lg font-bold mb-4">GENERATED FLASHCARDS</h3>
-          <ul className="space-y-4">
-            {flashcards.map((card, idx) => (
-              <li key={idx} className="p-4 border rounded bg-gray-50">
-                <strong>Q:</strong> {card.question}<br />
-                <strong>A:</strong> {card.answer}
-              </li>
-            ))}
-          </ul>
+          <div className="flex flex-col items-center">
+            <Flashcard
+              key={currentCard}
+              question={flashcards[currentCard].question}
+              answer={flashcards[currentCard].answer}
+              flipped={showAnswer}
+              onFlip={() => setShowAnswer((v) => !v)}
+            />
+            <div className="flex gap-4 mt-6">
+              <button
+                className="blocky-button bg-gray-300 hover:bg-gray-400 text-black"
+                onClick={() => { setCurrentCard((c) => Math.max(0, c - 1)); setShowAnswer(false); }}
+                disabled={currentCard === 0}
+              >
+                Previous
+              </button>
+              <button
+                className="blocky-button bg-blue-600 hover:bg-blue-700 text-white"
+                onClick={() => setShowAnswer((v) => !v)}
+              >
+                {showAnswer ? "Show Question" : "Show Answer"}
+              </button>
+              <button
+                className="blocky-button bg-gray-300 hover:bg-gray-400 text-black"
+                onClick={() => { setCurrentCard((c) => Math.min(flashcards.length - 1, c + 1)); setShowAnswer(false); }}
+                disabled={currentCard === flashcards.length - 1}
+              >
+                Next
+              </button>
+            </div>
+            <div className="mt-2 text-sm text-gray-600">Card {currentCard + 1} of {flashcards.length}</div>
+          </div>
         </div>
       )}
     </div>
