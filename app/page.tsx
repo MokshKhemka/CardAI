@@ -47,7 +47,7 @@ export default function Home() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-8">
               <h2 className="text-3xl font-bold text-black mb-4">Ready to Get Started?</h2>
-              <p className="text-lg text-gray-700">Upload your first PDF and see the magic happen!</p>
+              <p className="text-lg text-gray-700"> Try it out!</p>
             </div>
             <FileUpload />
           </div>
@@ -170,3 +170,4 @@ export default function Home() {
     </div>
   )
 } 
+

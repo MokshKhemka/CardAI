@@ -13,7 +13,7 @@ export function FileUpload() {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       import('pdfjs-dist').then(instance => {
-        instance.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${instance.version}/pdf.worker.min.js`;
+        instance.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${instance.version}/pdf.worker.js`;
         setPdfjs(instance);
       });
     }
@@ -388,25 +388,15 @@ The sun is primarily composed of hydrogen gas.`;
 
   return (
     <div className="blocky-card text-black">
-      <div className="blocky-header mb-6">
-        <h2 className="text-xl font-serif font-semibold text-white flex items-center gap-2 justify-center">
-          <FileText className="h-5 w-5" />
-          <span>UPLOAD YOUR PDF</span>
-        </h2>
-      </div>
-
       <div className="flex flex-col items-center">
-        {!textInputMode && (
-          <div className="w-full mb-6">
-            <button
-              onClick={handleTextInputMode}
-              className="blocky-button w-full bg-purple-600 hover:bg-purple-700 text-white mb-4"
-            >
-              ENTER TEXT MANUALLY (WITH EXAMPLE)
-            </button>
-          </div>
-        )}
-
+        <div className="w-full mb-6">
+          <button
+            onClick={handleTextInputMode}
+            className="blocky-button w-full bg-purple-600 hover:bg-purple-700 text-white mb-4"
+          >
+            ENTER TEXT MANUALLY (WITH EXAMPLE)
+          </button>
+        </div>
         {textInputMode && (
           <div className="blocky-content w-full mb-6">
             <div className="flex justify-between items-center mb-4">
@@ -442,100 +432,6 @@ The sun is primarily composed of hydrogen gas.`;
                 className="blocky-button bg-red-600 hover:bg-red-700 text-white"
               >
                 CLEAR TEXT
-              </button>
-            </div>
-          </div>
-        )}
-
-        {!textInputMode && (
-          <>
-            <div
-              className={cn(
-                "blocky-input relative border-2 border-dashed p-10 w-full mb-6 text-center transition-all duration-300 cursor-pointer",
-                dragActive
-                  ? "border-red-500 bg-red-50"
-                  : "border-gray-400 hover:border-gray-600 bg-gray-50",
-                file ? "border-green-500 bg-green-50" : "",
-              )}
-              onDragEnter={handleDrag}
-              onDragLeave={handleDrag}
-              onDragOver={handleDrag}
-              onDrop={handleDrop}
-              onClick={openFileSelector}
-            >
-              {file ? (
-                <div className="flex items-center justify-center gap-3 py-4">
-                  <div className="bg-green-100 p-3">
-                    <FileText className="h-6 w-6 text-green-600" />
-                  </div>
-                  <span className="text-gray-800 font-bold">{file.name}</span>
-                </div>
-              ) : (
-                <div className="flex flex-col items-center">
-                  <div className="bg-gray-200 p-4 mb-4">
-                    <Upload className="h-8 w-8 text-gray-600" />
-                  </div>
-                  <p className="text-gray-800 mb-2 font-bold">DRAG AND DROP YOUR PDF HERE, OR CLICK TO BROWSE</p>
-                  <p className="text-xs text-gray-600">SUPPORTS PDF FILES UP TO 50MB</p>
-                </div>
-              )}
-
-              <input
-                ref={inputRef}
-                type="file"
-                accept=".pdf"
-                onChange={handleFileChange}
-                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                style={{ display: "block" }}
-                aria-label="Upload PDF file"
-              />
-            </div>
-
-            {file && !uploading && (
-              <button
-                onClick={handleTextExtraction}
-                className="blocky-button w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white"
-              >
-                EXTRACT TEXT FROM PDF
-              </button>
-            )}
-
-            {uploading && (
-              <div className="w-full text-center">
-                <p className="mb-2">Extracting text... this may take a moment.</p>
-                <Progress value={progress} className="w-full" />
-              </div>
-            )}
-          </>
-        )}
-
-        {extractedText && !reviewMode && (
-          <div className="blocky-content w-full mt-8">
-            <h3 className="text-lg font-bold mb-4">EXTRACTED TEXT</h3>
-            <textarea
-              ref={textRef}
-              className="blocky-input w-full h-60 resize-none"
-              value={extractedText}
-              readOnly
-            />
-            <div className="flex justify-center mt-4 space-x-4">
-              <button 
-                  onClick={handleCreateFromSelection} 
-                  className="blocky-button bg-blue-600 hover:bg-blue-700 text-white"
-              >
-                  CREATE CARD FROM SELECTION
-              </button>
-              <button
-                onClick={() => generateFlashcards(extractedText)}
-                className="blocky-button bg-yellow-500 hover:bg-yellow-600"
-              >
-                GENERATE FLASHCARDS FROM ALL TEXT
-              </button>
-               <button
-                onClick={handleDownloadText}
-                className="blocky-button bg-gray-500 hover:bg-gray-600 text-white"
-              >
-                DOWNLOAD TEXT
               </button>
             </div>
           </div>
